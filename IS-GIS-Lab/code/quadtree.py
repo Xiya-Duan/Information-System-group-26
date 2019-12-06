@@ -61,7 +61,8 @@ class QuadTree:
 		axis_Y = [minY, midY, maxY]
 		# extend dict quads in case of keyerror
 		if len(self.quads) <= depth:
-			self.quads = [[] for i in range(0, depth+1)]
+			for i in range(len(self.quads), depth+1):
+				self.quads[i] = []
 		for i in range(0,2):
 			for j in range(0,2):
 				child_bbox = bb.BoundingBox(axis_X[i], axis_X[i+1], axis_Y[j], axis_Y[j+1])
