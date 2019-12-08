@@ -77,9 +77,30 @@ if __name__ == '__main__':
 
 	
 	# Using the QuadTree depth to subsample the KDTree		
-	# if args.quadtree:
-	# # :To be implemented by the student:
-	# 	raise NotImplementedError(":To be implemented by the student:")		
+	if args.quadtree:
+		quadtree = qt.QuadTree(tree.bounding_box(), args.quadtree)
+		# initially set the quad field for all records to the max quad-level
+		for key in dtb.keys():
+			dtb.update_field(key, 'quad', args.quadtree)
+		# iterate through all levels of the quadtree in reverse order
+		quads = quadtree.quadrants()
+		for qt_key in reversed(range(len(quads))):
+			for bbox in reversed(quads[qt_key]):
+				# for every box inside that level obtain its centroid
+				centroid = bbox.centroid()
+				# use the centroid to obtain the list of the closest points inside the KDTree
+				distance = 9999999999
+				closest_point_key = 0
+				for point_key in tree.closest(centroid):
+					# find the closest point inside that list
+					point = dtb.query(int(point_key))
+					if np.linalg.norm([centroid, [point[0], point[1]]]) < distance:
+						distance = np.linalg.norm([centroid, [point[0], point[1]]])
+						closest_point_key = point_key
+				# update the 'quad' field value
+				dtb.update_field(closest_point_key, 'quad', qt_key)
+				# print("Success update quad value as " + str(qt_key) + " for data" + str(closest_point_key))
+
 
 	plotter.plot()
 
