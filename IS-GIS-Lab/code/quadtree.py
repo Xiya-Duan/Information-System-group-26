@@ -39,7 +39,7 @@ class QuadTree:
 			self.quads[x]= []
 
 		self.quads[0] = [bbox]
-		self.recurse(bbox, 1)
+		self.recurse(bbox, depth-1)
 
 	def recurse(self,bbox, depth):
 		"""
@@ -56,17 +56,13 @@ class QuadTree:
 		midX = (minX + maxX) / 2.0
 		minY = bbox.data[1,0]
 		maxY = bbox.data[1,1]
-		midY = (minY + maxY) /2.0
+		midY = (minY + maxY) / 2.0
 		axis_X = [minX, midX, maxX]
 		axis_Y = [minY, midY, maxY]
-		# extend dict quads in case of keyerror
-		if len(self.quads) <= depth:
-			for i in range(len(self.quads), depth+1):
-				self.quads[i] = []
 		for i in range(0,2):
 			for j in range(0,2):
 				child_bbox = bb.BoundingBox(axis_X[i], axis_X[i+1], axis_Y[j], axis_Y[j+1])
-				self.quads[len(self.quads) - depth].append(child_bbox)
+				self.quads[self.depth - depth].append(child_bbox)
 				# recurse condition
 				if depth > 1:
 					self.recurse(child_bbox, depth - 1)
@@ -133,7 +129,7 @@ if __name__ == '__main__':
 	print(QuadTree.level(5))
 	print(QuadTree.level(900))
 
-	qt = QuadTree(bbox, 2)
+	qt = QuadTree(bbox, 1)
 	for k,v in qt.quads.items():
 		print (k,len(v))
 		for x in v:
