@@ -77,9 +77,9 @@ if __name__ == '__main__':
 
 	
 	# Using the QuadTree depth to subsample the KDTree		
-	if args.quadtree:
-	# :To be implemented by the student:
-		raise NotImplementedError(":To be implemented by the student:")		
+	# if args.quadtree:
+	# # :To be implemented by the student:
+	# 	raise NotImplementedError(":To be implemented by the student:")		
 
 	plotter.plot()
 
