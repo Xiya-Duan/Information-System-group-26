@@ -210,16 +210,16 @@ class KDTree:
 	
 		else:
 			axis = self.storage[sidx.storage()]["axis"]
-			lr = bbox.partition(point,axis)
+			partition = self.storage[sidx.storage()]["partition"]			
 
 			boxes = []
-			if lr[0]:
-				boxes.extend(self.rquery(bbox,sidx.left()))
-			if lr[1]:
-				boxes.extend(self.rquery(bbox,sidx.right()))
+			if point[axis] <= partition:
+				boxes.extend(self.closest(point,sidx.left()))
+			if partition < point[axis]:
+				boxes.extend(self.closest(point,sidx.right()))
 
 		return boxes
-		raise NotImplementedError(":To be implemented by the student:")					
+		# raise NotImplementedError(":To be implemented by the student:")					
 		
 
 	
