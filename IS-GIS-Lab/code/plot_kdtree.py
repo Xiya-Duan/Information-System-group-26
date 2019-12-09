@@ -89,16 +89,16 @@ if __name__ == '__main__':
 				# for every box inside that level obtain its centroid
 				centroid = bbox.centroid()
 				# use the centroid to obtain the list of the closest points inside the KDTree
-				distance = 9999999999
-				closest_point_key = 0
+				# distance = 9999999999
+				# closest_point_key = 0
 				for point_key in tree.closest(centroid):
 					# find the closest point inside that list
-					point = dtb.query(int(point_key))
-					if np.linalg.norm([centroid, [point[0], point[1]]]) < distance:
-						distance = np.linalg.norm([centroid, [point[0], point[1]]])
-						closest_point_key = point_key
-				# update the 'quad' field value
-				dtb.update_field(closest_point_key, 'quad', qt_key)
+				# 	point = dtb.query(int(point_key))
+				# 	if np.linalg.norm([centroid, [point[0], point[1]]]) < distance:
+				# 		distance = np.linalg.norm([centroid, [point[0], point[1]]])
+				# 		closest_point_key = point_key
+				# # update the 'quad' field value
+					dtb.update_field(point_key, 'quad', qt_key)
 				# print("Success update quad value as " + str(qt_key) + " for data" + str(closest_point_key))
 
 
