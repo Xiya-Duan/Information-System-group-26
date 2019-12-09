@@ -51,18 +51,24 @@ class QuadTree:
 
 		:To be implemented by the student:		
 		"""
+		# !!! function '__init__' also changed !!!
+		# make sure the recursive depth larger than 0
 		if depth > 0:
+			# To obtain the coordinate of X&Y and calculate the midpoint
 			minX = bbox.data[0,0]
 			maxX = bbox.data[0,1]
 			midX = (minX + maxX) / 2.0
 			minY = bbox.data[1,0]
 			maxY = bbox.data[1,1]
 			midY = (minY + maxY) / 2.0
+			# To create a array consist of above coordinate
 			axis_X = [minX, midX, maxX]
 			axis_Y = [minY, midY, maxY]		
 			for i in range(0,2):
 				for j in range(0,2):
+					# To generate offspring boundingboxes
 					child_bbox = bb.BoundingBox(axis_X[i], axis_X[i+1], axis_Y[j], axis_Y[j+1])
+					# Add offspring boundingbox into quadtree
 					self.quads[self.depth - depth].append(child_bbox)
 					# recurse condition
 					if depth > 1:
@@ -130,7 +136,7 @@ if __name__ == '__main__':
 	print(QuadTree.level(5))
 	print(QuadTree.level(900))
 
-	qt = QuadTree(bbox, 1)
+	qt = QuadTree(bbox, 3)
 	for k,v in qt.quads.items():
 		print (k,len(v))
 		for x in v:
