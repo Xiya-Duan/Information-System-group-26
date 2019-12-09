@@ -205,14 +205,19 @@ class KDTree:
 
 		:To be implemented by the student:	
 		"""
+		# Return founded points
 		if "elements" in self.storage[sidx.storage()]:
 			return self.storage[sidx.storage()]["elements"]
-	
+		# Or continue recursive seeking
 		else:
+			# obtain axis and partition. 
+			# axis: In which axis does the partition located
+			# partition: the coordinate of split point in the given axis
 			axis = self.storage[sidx.storage()]["axis"]
 			partition = self.storage[sidx.storage()]["partition"]			
 
 			boxes = []
+			# search for the closeset point by comparing coordinate of point in the given axis and partition
 			if point[axis] <= partition:
 				boxes.extend(self.closest(point,sidx.left()))
 			if partition < point[axis]:
