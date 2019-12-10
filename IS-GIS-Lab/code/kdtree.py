@@ -205,21 +205,7 @@ class KDTree:
 
 		:To be implemented by the student:	
 		"""
-		if "elements" in self.storage[sidx.storage()]:
-			return self.storage[sidx.storage()]["elements"]
-	
-		else:
-			axis = self.storage[sidx.storage()]["axis"]
-			partition = self.storage[sidx.storage()]["partition"]			
-
-			boxes = []
-			if point[axis] <= partition:
-				boxes.extend(self.closest(point,sidx.left()))
-			if partition < point[axis]:
-				boxes.extend(self.closest(point,sidx.right()))
-
-		return boxes
-		# raise NotImplementedError(":To be implemented by the student:")					
+		raise NotImplementedError(":To be implemented by the student:")					
 		
 
 	
