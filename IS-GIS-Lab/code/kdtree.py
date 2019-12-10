@@ -202,30 +202,28 @@ class KDTree:
 		
 		>>> print(tree.closest([7,2]))	
 		<<< [5 6]	
-
-		:To be implemented by the student:	
 		"""
-		# Return founded points
+
+		# Return found points
 		if "elements" in self.storage[sidx.storage()]:
 			return self.storage[sidx.storage()]["elements"]
-		# Or continue recursive seeking
-		else:
-			# obtain axis and partition. 
-			# axis: In which axis does the partition located
-			# partition: the coordinate of split point in the given axis
+		else: # Or continue recursive seeking
+			# > obtain axis and partition. 
+			# axis: In which axis is the partition located
 			axis = self.storage[sidx.storage()]["axis"]
+			# partition: the coordinate of split point in the given axis
 			partition = self.storage[sidx.storage()]["partition"]			
 
 			boxes = []
-			# search for the closeset point by comparing coordinate of point in the given axis and partition
+
+			# search for the closest point by comparing coordinate of point
+			# in the given axis and partition
 			if point[axis] <= partition:
-				boxes.extend(self.closest(point,sidx.left()))
+				boxes.extend(self.closest(point, sidx.left()))
 			if partition < point[axis]:
-				boxes.extend(self.closest(point,sidx.right()))
+				boxes.extend(self.closest(point, sidx.right()))
 
 		return boxes
-		# raise NotImplementedError(":To be implemented by the student:")					
-		
 
 	
 if __name__ == '__main__':
