@@ -52,7 +52,6 @@ class QuadTree:
 		# check the condition of recursion
 		if depth < self.depth:
 			# To obtain the coordinate of X&Y and calculate the midpoint
-
 			minX = bbox.data[0,0]
 			maxX = bbox.data[0,1]
 			midX = (minX + maxX) / 2.0
@@ -70,9 +69,6 @@ class QuadTree:
 					self.quads[depth].append(child_bbox)
 					# recurse
 					self.recurse(child_bbox, depth + 1)
-					
-		# raise NotImplementedError(":To be implemented by the student:")
-
 
 
 	@staticmethod	
