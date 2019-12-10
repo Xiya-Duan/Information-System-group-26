@@ -43,25 +43,22 @@ class QuadTree:
 
 	def recurse(self,bbox, depth):
 		"""
-		Internal function called on class contruction, this should 
+		Internal function called on class construction, this should 
 		create the BoundingBoxes.
 
 		:param bbox: the initial BoundingBox
 		:param depth: the depth of the QuadTree
-
-		:To be implemented by the student:		
 		"""
-		# !!! function '__init__' also changed !!!
 		# make sure the recursive depth larger than 0
 		if depth > 0:
-			# To obtain the coordinate of X&Y and calculate the midpoint
+			# To obtain the coordinate of X & Y and calculate the midpoint
 			minX = bbox.data[0,0]
 			maxX = bbox.data[0,1]
 			midX = (minX + maxX) / 2.0
 			minY = bbox.data[1,0]
 			maxY = bbox.data[1,1]
 			midY = (minY + maxY) / 2.0
-			# To create a array consist of above coordinate
+			# To create an array consisting of above coordinates
 			axis_X = [minX, midX, maxX]
 			axis_Y = [minY, midY, maxY]		
 			for i in range(0,2):
@@ -73,8 +70,6 @@ class QuadTree:
 					# recurse condition
 					if depth > 1:
 						self.recurse(child_bbox, depth - 1)
-					
-		# raise NotImplementedError(":To be implemented by the student:")
 
 	@staticmethod	
 	def at_least(size):
