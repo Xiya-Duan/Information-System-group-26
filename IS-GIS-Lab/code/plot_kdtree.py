@@ -102,6 +102,7 @@ if __name__ == '__main__':
 						closest_point_key = point_key
 				# step 6: update the 'quad' field value of the closest point
 				dtb.update_field(closest_point_key, 'quad', qt_key)
+				# Debugging line:
 				# print("Success update quad value as " + str(qt_key) + " for data" + str(closest_point_key))
 
 
