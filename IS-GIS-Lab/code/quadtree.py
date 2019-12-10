@@ -131,7 +131,7 @@ if __name__ == '__main__':
 	print(QuadTree.level(5))
 	print(QuadTree.level(900))
 
-	qt = QuadTree(bbox, 2)
+	qt = QuadTree(bbox, 3)
 	for k,v in qt.quads.items():
 		print (k,len(v))
 		for x in v:
